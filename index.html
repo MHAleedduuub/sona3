@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منشئ المواقع بالذكاء الاصطناعي</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Sign-In -->
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-robot"></i>
+                <span>منشئ المواقع الذكي</span>
+            </div>
+            
+            <div class="nav-links">
+                <a href="#home" class="nav-link active"><i class="fas fa-home"></i> الرئيسية</a>
+                <a href="#builder" class="nav-link"><i class="fas fa-code"></i> منشئ المواقع</a>
+                <a href="#my-sites" class="nav-link"><i class="fas fa-globe"></i> مواقعي</a>
+                <a href="#explore" class="nav-link"><i class="fas fa-compass"></i> استكشاف</a>
+            </div>
+            
+            <div class="user-section">
+                <div id="user-info" class="hidden">
+                    <img id="user-avatar" src="" alt="صورة المستخدم">
+                    <span id="user-name"></span>
+                    <button id="logout-btn" class="btn-outline">تسجيل الخروج</button>
+                </div>
+                <div id="login-section">
+                    <div id="g_id_onload"
+                         data-client_id="YOUR_GOOGLE_CLIENT_ID"
+                         data-context="signin"
+                         data-ux_mode="popup"
+                         data-callback="handleGoogleSignIn"
+                         data-auto_prompt="false">
+                    </div>
+                    <div class="g_id_signin"
+                         data-type="standard"
+                         data-shape="rectangular"
+                         data-theme="outline"
+                         data-text="signin_with"
+                         data-size="large"
+                         data-logo_alignment="left"
+                         data-width="250">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- المحتوى الرئيسي -->
+    <main>
+        <!-- قسم الترحيب -->
+        <section id="home" class="section active">
+            <div class="hero">
+                <h1>أنشئ موقعك الإلكتروني باستخدام الذكاء الاصطناعي</h1>
+                <p>ما عليك سوى وصف ما تريده، وسيقوم الذكاء الاصطناعي ببناء موقعك بالكامل في ثوانٍ</p>
+                <button id="start-building" class="btn-primary btn-large">
+                    <i class="fas fa-magic"></i> ابدأ البناء الآن
+                </button>
+            </div>
+            
+            <div class="features">
+                <div class="feature-card">
+                    <i class="fas fa-brain"></i>
+                    <h3>ذكاء اصطناعي متقدم</h3>
+                    <p>باستخدام نموذج Groq الذكي لإنشاء مواقع احترافية</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-bolt"></i>
+                    <h3>بناء سريع</h3>
+                    <p>أنشئ موقعك بالكامل في دقائق معدودة</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <h3>نشر فوري</h3>
+                    <p>انشر موقعك على منصتنا ليطلع عليه الجميع</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- قسم منشئ المواقع -->
+        <section id="builder" class="section hidden">
+            <div class="builder-container">
+                <h2><i class="fas fa-code"></i> منشئ المواقع بالذكاء الاصطناعي</h2>
+                
+                <div class="builder-content">
+                    <div class="input-section">
+                        <div class="form-group">
+                            <label for="site-title">عنوان الموقع</label>
+                            <input type="text" id="site-title" placeholder="مثل: متجر إلكتروني لبيع الكتب">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="site-description">وصف الموقع <span class="required">*</span></label>
+                            <textarea id="site-description" rows="8" placeholder="صف بالتفصيل ما تريده في موقعك... 
+
+مثال:
+أريد موقعاً لمطعم عربي يحتوي على:
+- صفحة رئيسية مع صور للأطباق
+- قائمة الطعام مع الأسعار
+- نموذج لحجز الطاولات
+- معلومات الاتصال والعنوان
+- ألوان ذهبية وخضراء
+
+كن مبدعاً واشرح كل ما تحتاجه!"></textarea>
+                            <div class="char-count"><span id="char-count">0</span>/1000 حرف</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="site-category">تصنيف الموقع</label>
+                            <select id="site-category">
+                                <option value="business">أعمال</option>
+                                <option value="portfolio">معرض أعمال</option>
+                                <option value="ecommerce">متجر إلكتروني</option>
+                                <option value="blog">مدونة</option>
+                                <option value="restaurant">مطعم</option>
+                                <option value="education">تعليمي</option>
+                                <option value="personal">شخصي</option>
+                                <option value="other">أخرى</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="ai-model">نموذج الذكاء الاصطناعي</label>
+                            <select id="ai-model">
+                                <option value="mixtral">Mixtral 8x7B (متوازن)</option>
+                                <option value="llama">Llama 3 (سريع)</option>
+                                <option value="gemma">Gemma (دقيق)</option>
+                            </select>
+                        </div>
+                        
+                        <button id="generate-site" class="btn-primary btn-large">
+                            <i class="fas fa-robot"></i> أنشئ الموقع باستخدام الذكاء الاصطناعي
+                        </button>
+                    </div>
+                    
+                    <div class="preview-section">
+                        <div class="preview-header">
+                            <h3>معاينة الموقع</h3>
+                            <div class="preview-actions">
+                                <button id="refresh-preview" class="btn-icon" title="تحديث المعاينة">
+                                    <i class="fas fa-sync-alt"></i>
+                                </button>
+                                <button id="fullscreen-preview" class="btn-icon" title="ملء الشاشة">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="preview-container">
+                            <iframe id="site-preview" title="معاينة الموقع"></iframe>
+                            <div id="preview-placeholder" class="preview-placeholder">
+                                <i class="fas fa-laptop-code"></i>
+                                <p>سيظهر موقعك المُنشَء هنا بعد الضغط على زر "أنشئ الموقع"</p>
+                            </div>
+                        </div>
+                        
+                        <div class="preview-controls">
+                            <button id="edit-code" class="btn-outline">
+                                <i class="fas fa-edit"></i> تعديل الكود
+                            </button>
+                            <button id="save-site" class="btn-primary" disabled>
+                                <i class="fas fa-save"></i> حفظ الموقع
+                            </button>
+                            <button id="publish-site" class="btn-success" disabled>
+                                <i class="fas fa-cloud-upload-alt"></i> نشر الموقع
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- محرر الكود -->
+                <div id="code-editor-section" class="hidden">
+                    <div class="editor-header">
+                        <h3><i class="fas fa-code"></i> محرر الكود</h3>
+                        <button id="close-editor" class="btn-icon">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    <div class="editor-container">
+                        <div class="editor-tabs">
+                            <button class="editor-tab active" data-tab="html">HTML</button>
+                            <button class="editor-tab" data-tab="css">CSS</button>
+                            <button class="editor-tab" data-tab="js">JavaScript</button>
+                        </div>
+                        <div class="editor-content">
+                            <textarea id="html-editor" class="code-editor active"></textarea>
+                            <textarea id="css-editor" class="code-editor"></textarea>
+                            <textarea id="js-editor" class="code-editor"></textarea>
+                        </div>
+                    </div>
+                    <div class="editor-actions">
+                        <button id="update-preview" class="btn-primary">
+                            <i class="fas fa-sync-alt"></i> تحديث المعاينة
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- قسم مواقعي -->
+        <section id="my-sites" class="section hidden">
+            <div class="sites-container">
+                <h2><i class="fas fa-globe"></i> مواقعي</h2>
+                
+                <div class="sites-filter">
+                    <button class="filter-btn active" data-filter="all">الكل</button>
+                    <button class="filter-btn" data-filter="published">منشورة</button>
+                    <button class="filter-btn" data-filter="draft">مسودات</button>
+                </div>
+                
+                <div id="sites-list" class="sites-list">
+                    <div class="empty-state">
+                        <i class="fas fa-folder-open"></i>
+                        <h3>لا توجد مواقع بعد</h3>
+                        <p>قم بإنشاء موقعك الأول باستخدام الذكاء الاصطناعي</p>
+                        <button id="create-first-site" class="btn-primary">
+                            <i class="fas fa-plus"></i> أنشئ موقعك الأول
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- قسم استكشاف المواقع -->
+        <section id="explore" class="section hidden">
+            <div class="explore-container">
+                <h2><i class="fas fa-compass"></i> استكشاف المواقع المنشورة</h2>
+                
+                <div class="search-bar">
+                    <input type="text" id="site-search" placeholder="ابحث عن مواقع...">
+                    <button id="search-btn"><i class="fas fa-search"></i></button>
+                </div>
+                
+                <div class="explore-categories">
+                    <button class="category-btn active" data-category="all">الكل</button>
+                    <button class="category-btn" data-category="business">أعمال</button>
+                    <button class="category-btn" data-category="ecommerce">متاجر</button>
+                    <button class="category-btn" data-category="portfolio">معارض أعمال</button>
+                    <button class="category-btn" data-category="blog">مدونات</button>
+                </div>
+                
+                <div id="explore-sites" class="explore-sites">
+                    <!-- سيتم تحميل المواقع المنشورة هنا -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- نافذة نشر الموقع -->
+    <div id="publish-modal" class="modal hidden">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-cloud-upload-alt"></i> نشر الموقع</h3>
+                <button id="close-publish-modal" class="btn-icon">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="publish-url">رابط الموقع</label>
+                    <div class="url-input">
+                        <span class="url-prefix">https://ai-website-builder.com/</span>
+                        <input type="text" id="publish-url" placeholder="اسم-الموقع">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="publish-description">وصف قصير</label>
+                    <textarea id="publish-description" rows="3" placeholder="أضف وصفاً لموقعك..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label>إعدادات الخصوصية</label>
+                    <div class="privacy-options">
+                        <label class="radio-label">
+                            <input type="radio" name="privacy" value="public" checked>
+                            <span>عام (يمكن للجميع رؤيته)</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="privacy" value="unlisted">
+                            <span>غير مدرج (فقط من لديه الرابط)</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="privacy" value="private">
+                            <span>خاص (أنت فقط)</span>
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="publish-info">
+                    <p><i class="fas fa-info-circle"></i> بعد النشر، سيصبح موقعك متاحاً للجميع على منصتنا ويمكن مشاهدته في قسم "استكشاف".</p>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button id="cancel-publish" class="btn-outline">إلغاء</button>
+                <button id="confirm-publish" class="btn-success">
+                    <i class="fas fa-cloud-upload-alt"></i> نشر الموقع
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- التذييل -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>منشئ المواقع الذكي</h4>
+                <p>أنشئ مواقع ويب احترافية باستخدام الذكاء الاصطناعي في دقائق</p>
+            </div>
+            <div class="footer-section">
+                <h4>روابط سريعة</h4>
+                <a href="#home">الرئيسية</a>
+                <a href="#builder">منشئ المواقع</a>
+                <a href="#my-sites">مواقعي</a>
+                <a href="#explore">استكشاف</a>
+            </div>
+            <div class="footer-section">
+                <h4>التقنيات</h4>
+                <p>Groq AI • MongoDB • JavaScript • HTML5 • CSS3</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2023 منشئ المواقع الذكي. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <!-- تحميل ملفات JavaScript -->
+    <script src="auth.js"></script>
+    <script src="ai-builder.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
